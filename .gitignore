@@ -1,0 +1,8 @@
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+.history/
+c

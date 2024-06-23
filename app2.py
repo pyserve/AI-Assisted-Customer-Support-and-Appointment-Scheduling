@@ -10,13 +10,13 @@ import time  # Import time module for latency calculation
 app = Flask(__name__)
 
 # Initialize Groq client
-client = Groq(api_key="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")
+client = Groq(api_key="GROK")
 
 # Initialize pygame mixer
 pygame.mixer.init()
 
 # Define Deepgram API key and options
-DEEPGRAM_API_KEY = "b7abf9d8190a25b5f93ca15ff8f5d048df0987bd"  # Replace with your actual Deepgram API key
+DEEPGRAM_API_KEY = "DEEPGRAM"  # Replace with your actual Deepgram API key
 output_dir = r"C:\Users\Weaver 15\Documents\Capstone Project\output_files"  # Directory where output files will be saved
 
 # Initial system message setting the context

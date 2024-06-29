@@ -28,8 +28,8 @@ def main():
     try:
         service = build("calendar", "v3", credentials=creds)
 
-        start_time = "2024-07-01T16:00:00-04:00"
-        end_time = "2024-07-01T17:00:00-04:00"
+        start_time = "2024-07-01T20:00:00-04:00"
+        end_time = "2024-07-01T21:00:00-04:00"
         time_zone = "America/Toronto"
 
         # Check if the time is available
@@ -58,12 +58,9 @@ def main():
                     "dateTime": end_time,
                     "timeZone": time_zone
                 },
-                "recurrence": [
-                    "RRULE:FREQ=DAILY;COUNT=3"
-                ],
                 "attendees": [
                     {"email": "kikasslucifer9@gmail.com"},
-                    {"email": "pokhrelsuruchi@gmail.com"}
+                    {"email": "raju09.pandit@gmail.com"}
                 ]
             }
 

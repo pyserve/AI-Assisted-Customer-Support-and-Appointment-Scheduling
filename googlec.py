@@ -28,8 +28,8 @@ def main():
     try:
         service = build("calendar", "v3", credentials=creds)
 
-        start_time = "2024-06-28T09:00:00-04:00"
-        end_time = "2024-06-28T17:00:00-04:00"
+        start_time = "2024-07-01T16:00:00-04:00"
+        end_time = "2024-07-01T17:00:00-04:00"
         time_zone = "America/Toronto"
 
         # Check if the time is available
@@ -67,7 +67,7 @@ def main():
                 ]
             }
 
-            event = service.events().insert(calendarId="primary", body=event).execute()
+            event = service.events().insert(calendarId="primary", body=event, sendUpdates="all").execute()
             print(f"Event created: {event.get('htmlLink')}")
         else:
             print("The selected time slot is not available. Here are the conflicting events:")

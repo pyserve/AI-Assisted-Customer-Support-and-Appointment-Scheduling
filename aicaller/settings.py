@@ -5,17 +5,17 @@ import sys
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(os.path.join(BASE_DIR, 'aicaller'))
 
-SECRET_KEY = "django-insecure-#n+(li_)zj2l&6fekaqkr0fn@2-(_tc8@&cuz0^b*etkw0w6ps"
+SECRET_KEY = "django-token"
 DEBUG = True
 
-HUGGINGFACE_TOKEN = "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"
+HUGGINGFACE_TOKEN = "YOUR_HUGGINGFACE_TOKEN"
 
-NGROK_URL = '56ec-69-166-117-246.ngrok-free.app'
+NGROK_URL = 'NGROK_URL'
 BASE_URL = f"https://{NGROK_URL}"
 
-TWILIO_ACCOUNT_SID = "ACc4db763fda5da9eb496fe7d75ed29369"
-TWILIO_AUTH_TOKEN = "a4cb56794bbf76232645f11aef28129a"
-TWILIO_PHONE_NUMBER = "+19384006490"
+TWILIO_ACCOUNT_SID = "TWILIO_ACCOUNT_SID"
+TWILIO_AUTH_TOKEN = "TWILIO_AUTH_TOKEN"
+TWILIO_PHONE_NUMBER = "+TWILIO_PHONE_NUMBER"
 
 ALLOWED_HOSTS = [NGROK_URL, '127.0.0.1', 'localhost']
 

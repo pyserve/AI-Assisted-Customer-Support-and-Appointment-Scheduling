@@ -18,7 +18,7 @@ from datetime import timedelta
 import datetime
 
 # using Facebook Meta-LLMA large language model for call reply.
-model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
+model_name = "SuruchiPokhrel/finetuned_llama3.1"
 client = InferenceClient(model=model_name, token=settings.HUGGINGFACE_TOKEN)
 
 speaker_timeout = 5
@@ -162,15 +162,6 @@ class OutboundsCalls(View):
             If the time does not fall within monday to friday 9 am to 6 pm, offer them another time.
                 {self.agent_name} will be there. "\n"""
         }
-        # system = {
-        #     "role":"system",
-        #     "content": f""""
-        #     You're an AI assistant for Weaver Eco Home, reaching out to {lead.first_name} to 
-        #     see if they're interested in exploring heat pump options. Be short and very casual like a human, 
-        #     ask questions about their home like size of house, type of house, gas furnace, only respond with one sentence.
-        #     Try to book a google meeting appointment with time.
-        #     """
-        # }
         prompt = {
             "role": "assistant",
             "content": f"""

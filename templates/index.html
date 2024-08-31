@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Appointment Booking </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 400px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .chat-header {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .chat-messages {
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+        .message {
+            margin-bottom: 10px;
+        }
+        .message.user {
+            text-align: right;
+        }
+        .message.user .message-content {
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: inline-block;
+            max-width: 70%;
+        }
+        .message.ai {
+            text-align: left;
+        }
+        .message.ai .message-content {
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: inline-block;
+            max-width: 70%;
+        }
+        .chat-form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #dddddd;
+        }
+        .chat-form input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        .chat-form button {
+            padding: 8px 20px;
+            border: none;
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            AI Customer Service
+        </div>
+        <div class="chat-messages" id="chatbox">
+            <!-- Messages will be added dynamically here -->
+        </div>
+        <form class="chat-form" id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script>
+        const chatbox = document.getElementById('chatbox');
+        const form = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const userMessage = userInput.value.trim();
+            if (userMessage === '') return;
+
+            // Send user message to Flask server
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ user_input: userMessage })
+            });
+
+            const data = await response.json();
+            const aiResponse = data.response;
+
+            // Display user message and AI response in chatbox
+            appendMessage('user', userMessage);
+            appendMessage('ai', aiResponse);
+
+            // Clear input field
+            userInput.value = '';
+            userInput.focus();
+        });
+
+        function appendMessage(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', role);
+
+            const messageContent = document.createElement('div');
+            messageContent.classList.add('message-content');
+            messageContent.textContent = content;
+
+            messageDiv.appendChild(messageContent);
+            chatbox.appendChild(messageDiv);
+
+            // Scroll to bottom of chatbox
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
